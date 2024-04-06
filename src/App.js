@@ -1,37 +1,22 @@
 import Webcam from "react-webcam";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import CameraComponent from "./CameraComponent";
 
 export default function App() {
   const webcamRef = useRef(null);
-  // const [imgSrc, setImgSrc] = useState(null);
-
-  // const interval = setInterval(async function () {
-  //   if (webcamRef.current) { // Add null check here
-  //     let imageSrc = webcamRef.current.getScreenshot();
-  //     imageSrc = imageSrc.substring(23);
-  //     setImgSrc(imageSrc);
-
-  //     let user_data_face = {
-  //       image: imageSrc,
-  //     };
-
-  //     const response = await fetch('http://127.0.0.1:5000/photo2material', {
-  //       method: 'POST',
-  //       body: JSON.stringify(user_data_face),
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
-
-  //     const data = await response.json();
-  //     if (data['status'] === true) {
-  //       console.log(data);
-  //       clearInterval(interval);
-  //     }
-
-  //   }
-  // },10000);
-
+  // Funcția care enumerează dispozitivele media
+  const enumerateDevices = async () => {
+    try {
+      // Obține dispozitivele media disponibile
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      console.log("MERGE?????" + devices);
+      const rearCamera = devices.find(device => device.kind === 'videoinput');
+      console.log("camera de la laptop" + rearCamera)
+    } catch (error) {
+      console.error('Error accessing media devices:', error);
+    }
+  };
+  enumerateDevices()
   return (
     <div>
       <Webcam
