@@ -10,8 +10,8 @@ export default function App() {
       // Obține dispozitivele media disponibile
       const devices = await navigator.mediaDevices.enumerateDevices();
       console.log("MERGE?????" + devices);
-      const rearCamera = devices.find(device => device.kind === 'videoinput');
-      console.log("camera de la laptop" + rearCamera)
+      rearCamera = devices.find(device => device.kind === 'videoinput' && device.label.includes('back'));
+      // console.log("camera de la laptop" + webcamRef)
     } catch (error) {
       console.error('Error accessing media devices:', error);
     }
@@ -21,7 +21,7 @@ export default function App() {
     <div>
       <Webcam
         audio={false}
-        ref={webcamRef}
+        ref={rearCamera}
         screenshotFormat="image/jpeg"
         width="40%"
       />
