@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 const CameraApp = ({ rearCamera }) => {
     const [stream, setStream] = useState(null);
-    const [facingMode, setFacingMode] = useState('user');
+    const [facingMode, setFacingMode] = useState('environment'); // Setează implicit camera pe spate
 
     useEffect(() => {
-        const FACING_MODE_USER = "user";
-        const FACING_MODE_ENVIRONMENT = "environment";
-
         const videoConstraints = {
             facingMode: facingMode
         };
