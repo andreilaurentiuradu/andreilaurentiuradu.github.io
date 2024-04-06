@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import Webcam from "react-webcam";
+import React, { useRef, useState } from "react";
 
-function App() {
+export default function App() {
+  const webcamRef = useRef(null);
+  // const [imgSrc, setImgSrc] = useState(null);
+
+  // const interval = setInterval(async function () {
+  //   if (webcamRef.current) { // Add null check here
+  //     let imageSrc = webcamRef.current.getScreenshot();
+  //     imageSrc = imageSrc.substring(23);
+  //     setImgSrc(imageSrc);
+
+  //     let user_data_face = {
+  //       image: imageSrc,
+  //     };
+
+  //     const response = await fetch('http://127.0.0.1:5000/photo2material', {
+  //       method: 'POST',
+  //       body: JSON.stringify(user_data_face),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+
+  //     const data = await response.json();
+  //     if (data['status'] === true) {
+  //       console.log(data);
+  //       clearInterval(interval);
+  //     }
+
+  //   }
+  // },10000);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Webcam
+        audio={false}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        width="40%"
+      />
+      <p>MAMA</p>
     </div>
-  );
+  )
 }
-
-export default App;
